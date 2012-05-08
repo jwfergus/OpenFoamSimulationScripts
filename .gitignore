@@ -1,0 +1,27 @@
+#   Ignore Everything! Master ignorer!
+#
+
+*
+
+#
+#   Ok, so we do need to commit /something/
+#
+#   Don't ignore system directory, because we store controlDict/setFieldsDict there
+#
+
+!*/system
+!controlDict.original
+!setFieldsDict.original
+
+
+#
+#   Don't ignore ruby files, because they're what we're really trying to store
+#
+
+!*.rb
+
+#
+#   Finally, can't ignore our .gitignore
+#
+
+!.gitignore
