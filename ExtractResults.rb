@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
  
   #Compiling results
   mainDirectory = "/home/bluesim/OpenFOAM/OpenFOAM-1.6.x/tutorials/incompressible/transientSimpleFoam/igccpaper/crac_results/Probes_Crac"
