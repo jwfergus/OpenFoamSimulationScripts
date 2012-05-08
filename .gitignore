@@ -17,9 +17,11 @@ system/*
 
 #
 #   Don't ignore ruby files, because they're what we're really trying to store
+#    Do ignore test.rb files, just for messing around.
 #
 
 !*.rb
+test.rb
 
 #
 #   Finally, can't ignore our .gitignore
