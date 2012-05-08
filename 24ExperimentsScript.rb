@@ -2,13 +2,14 @@
 Q = 733159.3302
 firstEndTime = 21
 secondEndTime = 110
-
+mainDirectory = Dir.pwd
+openFoamRootDirectory = "/home/bluesim/OpenFOAM/OpenFOAM-1.6.x/"
 
 ChassisList = ["//rack1chassis2","//rack1chassis4","//rack1chassis6",'//rack2chassis2','//rack2chassis4','//rack2chassis6','//rack3chassis2','//rack3chassis4',
 '//rack3chassis6','//rack4chassis2','//rack4chassis4','//rack4chassis6','//rack5chassis2','//rack5chassis4','//rack5chassis6','//rack6chassis2','//rack6chassis4',
 '//rack6chassis6','//rack7chassis2','//rack7chassis4','//rack7chassis6','//rack8chassis2','//rack8chassis4','//rack8chassis6']
 
-Dir.chdir('/home/bluesim/OpenFOAM/OpenFOAM-1.6.x/tutorials/incompressible/transientSimpleFoam/igccpaper')
+Dir.chdir(mainDirectory)
 timeFile = File.open('timeStamps', 'w')
 
 system("rm -r rack* ")
@@ -16,7 +17,7 @@ system("rm -r rack* ")
 ChassisList.each{ |chassis|
 timeFile.puts chassis.to_s + " start :-: " + Time.now.getutc.to_s
 
-Dir.chdir('/home/bluesim/OpenFOAM/OpenFOAM-1.6.x/tutorials/incompressible/transientSimpleFoam/igccpaper')
+Dir.chdir(mainDirectory)
 	#
 	# Clearing Previous Results
 	#
@@ -36,7 +37,7 @@ Dir.chdir('/home/bluesim/OpenFOAM/OpenFOAM-1.6.x/tutorials/incompressible/transi
 	#
 	#	Section to handle changing transientSimpleFoam.C file.
 	#
-	Dir.chdir('/home/bluesim/OpenFOAM/OpenFOAM-1.6.x/applications/solvers/incompressible/transientSimpleFoam')
+	Dir.chdir(openFoamRootDirectory + 'applications/solvers/incompressible/transientSimpleFoam')
 	origTransientSimpleFoamC = File.readlines('transientSimpleFoam.C.original')
 	setTransientSimpleFoamC = File.open('transientSimpleFoam.C', 'w')
 	origTransientSimpleFoamC.each{|line|
@@ -49,11 +50,11 @@ Dir.chdir('/home/bluesim/OpenFOAM/OpenFOAM-1.6.x/tutorials/incompressible/transi
 	}  
 	setTransientSimpleFoamC.close
 	system("wmake libso ")
-	Dir.chdir('/home/bluesim/OpenFOAM/OpenFOAM-1.6.x/applications')
+	Dir.chdir(openFoamRootDirectory + 'applications')
 	system("./Allwmake ")
 
 
-	Dir.chdir('/home/bluesim/OpenFOAM/OpenFOAM-1.6.x/tutorials/incompressible/transientSimpleFoam/igccpaper/system')
+	Dir.chdir(mainDirectory+'/system')
 	origSetFieldsDictFile = File.readlines('setFieldsDict.original')
 	setFieldsDictFile = File.open('setFieldsDict', 'w')
 	origSetFieldsDictFile.each{|line|
@@ -88,7 +89,7 @@ Dir.chdir('/home/bluesim/OpenFOAM/OpenFOAM-1.6.x/tutorials/incompressible/transi
 	}
 	setControlDict.close
 
-	Dir.chdir('/home/bluesim/OpenFOAM/OpenFOAM-1.6.x/tutorials/incompressible/transientSimpleFoam/igccpaper')
+	Dir.chdir(mainDirectory)
 
 	#puts "Check files *********************"
 	#puts "transientSimpleFoam.C should have #{chassis.to_s} commented out,"
@@ -111,7 +112,7 @@ Dir.chdir('/home/bluesim/OpenFOAM/OpenFOAM-1.6.x/tutorials/incompressible/transi
 	#
 	#	Section to handle changing transientSimpleFoam.C file.
 	#
-	Dir.chdir('/home/bluesim/OpenFOAM/OpenFOAM-1.6.x/applications/solvers/incompressible/transientSimpleFoam')
+	Dir.chdir(openFoamRootDirectory + 'applications/solvers/incompressible/transientSimpleFoam')
 	origTransientSimpleFoamC = File.readlines('transientSimpleFoam.C.original')
 	system("cp transientSimpleFoam.C.original transientSimpleFoam.C")
 
@@ -119,14 +120,14 @@ Dir.chdir('/home/bluesim/OpenFOAM/OpenFOAM-1.6.x/tutorials/incompressible/transi
 	# Remake solver
 	#
 	system("wmake libso ")
-	Dir.chdir('/home/bluesim/OpenFOAM/OpenFOAM-1.6.x/applications')
+	Dir.chdir(openFoamRootDirectory + 'applications')
 	system("./Allwmake ")
 
 
 	#
 	# Change Q Value back to zero
 	#
-	Dir.chdir('/home/bluesim/OpenFOAM/OpenFOAM-1.6.x/tutorials/incompressible/transientSimpleFoam/igccpaper/system')
+	Dir.chdir(mainDirectory+'/system')
 
 	origSetFieldsDictFile = File.readlines('setFieldsDict.original')
 	setFieldsDictFile = File.open('setFieldsDict', 'w')
@@ -164,7 +165,7 @@ Dir.chdir('/home/bluesim/OpenFOAM/OpenFOAM-1.6.x/tutorials/incompressible/transi
 	setControlDict.close
 
 
-	Dir.chdir('/home/bluesim/OpenFOAM/OpenFOAM-1.6.x/tutorials/incompressible/transientSimpleFoam/igccpaper')
+	Dir.chdir(mainDirectory)
 	system("setFields -latestTime ")
 	system("transientSimpleFoam ")
 
@@ -178,7 +179,7 @@ Dir.chdir('/home/bluesim/OpenFOAM/OpenFOAM-1.6.x/tutorials/incompressible/transi
 	system("cp -r probes2 #{directoryFolder} ")
 
 	#Compiling results
-	Dir.chdir("/home/bluesim/OpenFOAM/OpenFOAM-1.6.x/tutorials/incompressible/transientSimpleFoam/igccpaper/#{directoryFolder}")
+	Dir.chdir(mainDirectory + "/#{directoryFolder}")
 
 	resultsFileName = "Main_Data_"+directoryFolder
 
@@ -189,7 +190,7 @@ Dir.chdir('/home/bluesim/OpenFOAM/OpenFOAM-1.6.x/tutorials/incompressible/transi
 	directories.each{|dir|
 
 	resultsLineAsString =""
-	Dir.chdir("/home/bluesim/OpenFOAM/OpenFOAM-1.6.x/tutorials/incompressible/transientSimpleFoam/igccpaper/#{directoryFolder}/#{dir.to_s}/20")
+	Dir.chdir(mainDirectory+"/#{directoryFolder}/#{dir.to_s}/20")
 	tFile = File.readlines('T')
 	lineCount = 1
 	tFile.each{|line|
@@ -201,7 +202,7 @@ Dir.chdir('/home/bluesim/OpenFOAM/OpenFOAM-1.6.x/tutorials/incompressible/transi
 	  
 	}
 
-	Dir.chdir("/home/bluesim/OpenFOAM/OpenFOAM-1.6.x/tutorials/incompressible/transientSimpleFoam/igccpaper/#{directoryFolder}/#{dir.to_s}/#{firstEndTime}")
+	Dir.chdir(mainDirectory+"/#{directoryFolder}/#{dir.to_s}/#{firstEndTime}")
 	tFile = File.readlines('T')
 	lineCount = 1
 	tFile.each{|line|
