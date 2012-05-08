@@ -1,0 +1,924 @@
+/*--------------------------------*- C++ -*----------------------------------*| =========                 |                                                 |
+| \      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \    /   O peration     | Version:  1.5                                   |
+|   \  /    A nd           | Web:      http://www.OpenFOAM.org               |
+|    \/     M anipulation  |                                                 |
+*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     transientSimpleFoam;
+
+startFrom       latestTime;
+
+startTime       20;
+
+stopAt          endTime;
+
+endTime		200;
+
+deltaT          0.1;
+
+writeControl    adjustableRunTime;
+
+writeInterval   0.1;
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  6;
+
+writeCompression compressed;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable yes;
+
+adjustTimeStep  yes;
+
+maxCo 5; functions {Rack1Chassis2_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+        // Where to load it from
+        functionObjectLibs ( "libsampling.so" );
+
+        type        probes;
+
+        // Name of the directory for probe data 
+         name        Rack1Chassis2_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0;
+        probeLocations
+        ((3.39
+ 2.87
+ 0.53)
+(3.39
+ 2.1
+ 0.53)
+);
+
+        // Fields to be probed
+        fields (T);
+
+        // Write at same frequency as fields
+        outputControl   outputTime;
+        outputInterval  1;
+    }
+Rack1Chassis4_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+        // Where to load it from
+        functionObjectLibs ( "libsampling.so" );
+
+        type        probes;
+
+        // Name of the directory for probe data 
+         name        Rack1Chassis4_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0;
+        probeLocations
+        ((3.39
+ 2.87
+ 1.05)
+(3.39
+ 2.1
+ 1.05)
+);
+
+        // Fields to be probed
+        fields (T);
+
+        // Write at same frequency as fields
+        outputControl   outputTime;
+        outputInterval  1;
+    }
+Rack1Chassis6_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+        // Where to load it from
+        functionObjectLibs ( "libsampling.so" );
+
+        type        probes;
+
+        // Name of the directory for probe data 
+         name        Rack1Chassis6_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0;
+        probeLocations
+        ((3.39
+ 2.87
+ 1.57)
+(3.39
+ 2.1
+ 1.57)
+);
+
+        // Fields to be probed
+        fields (T);
+
+        // Write at same frequency as fields
+        outputControl   outputTime;
+        outputInterval  1;
+    }
+Rack2Chassis2_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+        // Where to load it from
+        functionObjectLibs ( "libsampling.so" );
+
+        type        probes;
+
+        // Name of the directory for probe data 
+         name        Rack2Chassis2_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0;
+        probeLocations
+        ((2.78
+ 2.87
+ 0.53)
+(2.78
+ 2.1
+ 0.53)
+);
+
+        // Fields to be probed
+        fields (T);
+
+        // Write at same frequency as fields
+        outputControl   outputTime;
+        outputInterval  1;
+    }
+Rack2Chassis4_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+        // Where to load it from
+        functionObjectLibs ( "libsampling.so" );
+
+        type        probes;
+
+        // Name of the directory for probe data 
+         name        Rack2Chassis4_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0;
+        probeLocations
+        ((2.78
+ 2.87
+ 1.05)
+(2.78
+ 2.1
+ 1.05)
+);
+
+        // Fields to be probed
+        fields (T);
+
+        // Write at same frequency as fields
+        outputControl   outputTime;
+        outputInterval  1;
+    }
+Rack2Chassis6_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+        // Where to load it from
+        functionObjectLibs ( "libsampling.so" );
+
+        type        probes;
+
+        // Name of the directory for probe data 
+         name        Rack2Chassis6_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0;
+        probeLocations
+        ((2.78
+ 2.87
+ 1.57)
+(2.78
+ 2.1
+ 1.57)
+);
+
+        // Fields to be probed
+        fields (T);
+
+        // Write at same frequency as fields
+        outputControl   outputTime;
+        outputInterval  1;
+    }
+Rack3Chassis2_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+        // Where to load it from
+        functionObjectLibs ( "libsampling.so" );
+
+        type        probes;
+
+        // Name of the directory for probe data 
+         name        Rack3Chassis2_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0;
+        probeLocations
+        ((2.17
+ 2.87
+ 0.53)
+(2.17
+ 2.1
+ 0.53)
+);
+
+        // Fields to be probed
+        fields (T);
+
+        // Write at same frequency as fields
+        outputControl   outputTime;
+        outputInterval  1;
+    }
+Rack3Chassis4_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+        // Where to load it from
+        functionObjectLibs ( "libsampling.so" );
+
+        type        probes;
+
+        // Name of the directory for probe data 
+         name        Rack3Chassis4_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0;
+        probeLocations
+        ((2.17
+ 2.87
+ 1.05)
+(2.17
+ 2.1
+ 1.05)
+);
+
+        // Fields to be probed
+        fields (T);
+
+        // Write at same frequency as fields
+        outputControl   outputTime;
+        outputInterval  1;
+    }
+Rack3Chassis6_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+        // Where to load it from
+        functionObjectLibs ( "libsampling.so" );
+
+        type        probes;
+
+        // Name of the directory for probe data 
+         name        Rack3Chassis6_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0;
+        probeLocations
+        ((2.17
+ 2.87
+ 1.57)
+(2.17
+ 2.1
+ 1.57)
+);
+
+        // Fields to be probed
+        fields (T);
+
+        // Write at same frequency as fields
+        outputControl   outputTime;
+        outputInterval  1;
+    }
+Rack4Chassis2_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+        // Where to load it from
+        functionObjectLibs ( "libsampling.so" );
+
+        type        probes;
+
+        // Name of the directory for probe data 
+         name        Rack4Chassis2_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0;
+        probeLocations
+        ((1.56
+ 2.87
+ 0.53)
+(1.56
+ 2.1
+ 0.53)
+);
+
+        // Fields to be probed
+        fields (T);
+
+        // Write at same frequency as fields
+        outputControl   outputTime;
+        outputInterval  1;
+    }
+Rack4Chassis4_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+        // Where to load it from
+        functionObjectLibs ( "libsampling.so" );
+
+        type        probes;
+
+        // Name of the directory for probe data 
+         name        Rack4Chassis4_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0;
+        probeLocations
+        ((1.56
+ 2.87
+ 1.05)
+(1.56
+ 2.1
+ 1.05)
+);
+
+        // Fields to be probed
+        fields (T);
+
+        // Write at same frequency as fields
+        outputControl   outputTime;
+        outputInterval  1;
+    }
+Rack4Chassis6_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+        // Where to load it from
+        functionObjectLibs ( "libsampling.so" );
+
+        type        probes;
+
+        // Name of the directory for probe data 
+         name        Rack4Chassis6_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0;
+        probeLocations
+        ((1.56
+ 2.87
+ 1.57)
+(1.56
+ 2.1
+ 1.57)
+);
+
+        // Fields to be probed
+        fields (T);
+
+        // Write at same frequency as fields
+        outputControl   outputTime;
+        outputInterval  1;
+    }
+Rack5Chassis2_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+        // Where to load it from
+        functionObjectLibs ( "libsampling.so" );
+
+        type        probes;
+
+        // Name of the directory for probe data 
+         name        Rack5Chassis2_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0;
+        probeLocations
+        ((0.83
+ 3.84
+ 0.53)
+(0.83
+ 4.59
+ 0.53)
+);
+
+        // Fields to be probed
+        fields (T);
+
+        // Write at same frequency as fields
+        outputControl   outputTime;
+        outputInterval  1;
+    }
+Rack5Chassis4_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+        // Where to load it from
+        functionObjectLibs ( "libsampling.so" );
+
+        type        probes;
+
+        // Name of the directory for probe data 
+         name        Rack5Chassis4_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0;
+        probeLocations
+        ((0.83
+ 3.84
+ 1.05)
+(0.83
+ 4.59
+ 1.05)
+);
+
+        // Fields to be probed
+        fields (T);
+
+        // Write at same frequency as fields
+        outputControl   outputTime;
+        outputInterval  1;
+    }
+Rack5Chassis6_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+        // Where to load it from
+        functionObjectLibs ( "libsampling.so" );
+
+        type        probes;
+
+        // Name of the directory for probe data 
+         name        Rack5Chassis6_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0;
+        probeLocations
+        ((0.83
+ 3.84
+ 1.57)
+(0.83
+ 4.59
+ 1.57)
+);
+
+        // Fields to be probed
+        fields (T);
+
+        // Write at same frequency as fields
+        outputControl   outputTime;
+        outputInterval  1;
+    }
+Rack6Chassis2_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+        // Where to load it from
+        functionObjectLibs ( "libsampling.so" );
+
+        type        probes;
+
+        // Name of the directory for probe data 
+         name        Rack6Chassis2_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0;
+        probeLocations
+        ((1.44
+ 3.84
+ 0.53)
+(1.44
+ 4.59
+ 0.53)
+);
+
+        // Fields to be probed
+        fields (T);
+
+        // Write at same frequency as fields
+        outputControl   outputTime;
+        outputInterval  1;
+    }
+Rack6Chassis4_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+        // Where to load it from
+        functionObjectLibs ( "libsampling.so" );
+
+        type        probes;
+
+        // Name of the directory for probe data 
+         name        Rack6Chassis4_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0;
+        probeLocations
+        ((1.44
+ 3.84
+ 1.05)
+(1.44
+ 4.59
+ 1.05)
+);
+
+        // Fields to be probed
+        fields (T);
+
+        // Write at same frequency as fields
+        outputControl   outputTime;
+        outputInterval  1;
+    }
+Rack6Chassis6_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+        // Where to load it from
+        functionObjectLibs ( "libsampling.so" );
+
+        type        probes;
+
+        // Name of the directory for probe data 
+         name        Rack6Chassis6_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0;
+        probeLocations
+        ((1.44
+ 3.84
+ 1.57)
+(1.44
+ 4.59
+ 1.57)
+);
+
+        // Fields to be probed
+        fields (T);
+
+        // Write at same frequency as fields
+        outputControl   outputTime;
+        outputInterval  1;
+    }
+Rack7Chassis2_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+        // Where to load it from
+        functionObjectLibs ( "libsampling.so" );
+
+        type        probes;
+
+        // Name of the directory for probe data 
+         name        Rack7Chassis2_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0;
+        probeLocations
+        ((2.06
+ 3.84
+ 0.53)
+(2.06
+ 4.59
+ 0.53)
+);
+
+        // Fields to be probed
+        fields (T);
+
+        // Write at same frequency as fields
+        outputControl   outputTime;
+        outputInterval  1;
+    }
+Rack7Chassis4_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+        // Where to load it from
+        functionObjectLibs ( "libsampling.so" );
+
+        type        probes;
+
+        // Name of the directory for probe data 
+         name        Rack7Chassis4_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0;
+        probeLocations
+        ((2.06
+ 3.84
+ 1.05)
+(2.06
+ 4.59
+ 1.05)
+);
+
+        // Fields to be probed
+        fields (T);
+
+        // Write at same frequency as fields
+        outputControl   outputTime;
+        outputInterval  1;
+    }
+Rack7Chassis6_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+        // Where to load it from
+        functionObjectLibs ( "libsampling.so" );
+
+        type        probes;
+
+        // Name of the directory for probe data 
+         name        Rack7Chassis6_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0;
+        probeLocations
+        ((2.06
+ 3.84
+ 1.57)
+(2.06
+ 4.59
+ 1.57)
+);
+
+        // Fields to be probed
+        fields (T);
+
+        // Write at same frequency as fields
+        outputControl   outputTime;
+        outputInterval  1;
+    }
+Rack8Chassis2_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+        // Where to load it from
+        functionObjectLibs ( "libsampling.so" );
+
+        type        probes;
+
+        // Name of the directory for probe data 
+         name        Rack8Chassis2_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0;
+        probeLocations
+        ((2.67
+ 3.84
+ 0.53)
+(2.67
+ 4.59
+ 0.53)
+);
+
+        // Fields to be probed
+        fields (T);
+
+        // Write at same frequency as fields
+        outputControl   outputTime;
+        outputInterval  1;
+    }
+Rack8Chassis4_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+        // Where to load it from
+        functionObjectLibs ( "libsampling.so" );
+
+        type        probes;
+
+        // Name of the directory for probe data 
+         name        Rack8Chassis4_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0;
+        probeLocations
+        ((2.67
+ 3.84
+ 1.05)
+(2.67
+ 4.59
+ 1.05)
+);
+
+        // Fields to be probed
+        fields (T);
+
+        // Write at same frequency as fields
+        outputControl   outputTime;
+        outputInterval  1;
+    }
+Rack8Chassis6_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+        // Where to load it from
+        functionObjectLibs ( "libsampling.so" );
+
+        type        probes;
+
+        // Name of the directory for probe data 
+         name        Rack8Chassis6_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0;
+        probeLocations
+        ((2.67
+ 3.84
+ 1.57)
+(2.67
+ 4.59
+ 1.57)
+);
+
+        // Fields to be probed
+        fields (T);
+
+        // Write at same frequency as fields
+        outputControl   outputTime;
+        outputInterval  1;
+    }
+probes2
+    {
+        // Where to load it from
+        functionObjectLibs ( "libsampling.so" );
+
+        type        probes;
+
+        // Name of the directory for probe data //outlet inlet
+        name        Crac_in_out;
+        probeLocations
+        ((0.45 1.235 0)(0.3 2.44 2.16)
+);
+
+        // Fields to be probed
+        fields (T);
+
+        // Write at same frequency as fields
+        outputControl   outputTime;
+        outputInterval  1;
+    }flowAfterRack1Chassis2_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+          type swakExpression;
+          valueType faceZone;
+          zoneName Rack1Chassis2_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0_2;
+          expression "phi*flip()";
+          accumulations (
+              sum
+          );
+          verbose true;
+      }flowAfterRack1Chassis4_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+          type swakExpression;
+          valueType faceZone;
+          zoneName Rack1Chassis4_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0_2;
+          expression "phi*flip()";
+          accumulations (
+              sum
+          );
+          verbose true;
+      }flowAfterRack1Chassis6_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+          type swakExpression;
+          valueType faceZone;
+          zoneName Rack1Chassis6_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0_2;
+          expression "phi*flip()";
+          accumulations (
+              sum
+          );
+          verbose true;
+      }flowAfterRack2Chassis2_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+          type swakExpression;
+          valueType faceZone;
+          zoneName Rack2Chassis2_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0_2;
+          expression "phi*flip()";
+          accumulations (
+              sum
+          );
+          verbose true;
+      }flowAfterRack2Chassis4_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+          type swakExpression;
+          valueType faceZone;
+          zoneName Rack2Chassis4_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0_2;
+          expression "phi*flip()";
+          accumulations (
+              sum
+          );
+          verbose true;
+      }flowAfterRack2Chassis6_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+          type swakExpression;
+          valueType faceZone;
+          zoneName Rack2Chassis6_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0_2;
+          expression "phi*flip()";
+          accumulations (
+              sum
+          );
+          verbose true;
+      }flowAfterRack3Chassis2_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+          type swakExpression;
+          valueType faceZone;
+          zoneName Rack3Chassis2_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0_2;
+          expression "phi*flip()";
+          accumulations (
+              sum
+          );
+          verbose true;
+      }flowAfterRack3Chassis4_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+          type swakExpression;
+          valueType faceZone;
+          zoneName Rack3Chassis4_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0_2;
+          expression "phi*flip()";
+          accumulations (
+              sum
+          );
+          verbose true;
+      }flowAfterRack3Chassis6_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+          type swakExpression;
+          valueType faceZone;
+          zoneName Rack3Chassis6_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0_2;
+          expression "phi*flip()";
+          accumulations (
+              sum
+          );
+          verbose true;
+      }flowAfterRack4Chassis2_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+          type swakExpression;
+          valueType faceZone;
+          zoneName Rack4Chassis2_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0_2;
+          expression "phi*flip()";
+          accumulations (
+              sum
+          );
+          verbose true;
+      }flowAfterRack4Chassis4_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+          type swakExpression;
+          valueType faceZone;
+          zoneName Rack4Chassis4_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0_2;
+          expression "phi*flip()";
+          accumulations (
+              sum
+          );
+          verbose true;
+      }flowAfterRack4Chassis6_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+          type swakExpression;
+          valueType faceZone;
+          zoneName Rack4Chassis6_100_y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0_2;
+          expression "phi*flip()";
+          accumulations (
+              sum
+          );
+          verbose true;
+      }flowAfterRack5Chassis2_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+          type swakExpression;
+          valueType faceZone;
+          zoneName Rack5Chassis2_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0_2;
+          expression "phi*flip()";
+          accumulations (
+              sum
+          );
+          verbose true;
+      }flowAfterRack5Chassis4_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+          type swakExpression;
+          valueType faceZone;
+          zoneName Rack5Chassis4_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0_2;
+          expression "phi*flip()";
+          accumulations (
+              sum
+          );
+          verbose true;
+      }flowAfterRack5Chassis6_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+          type swakExpression;
+          valueType faceZone;
+          zoneName Rack5Chassis6_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0_2;
+          expression "phi*flip()";
+          accumulations (
+              sum
+          );
+          verbose true;
+      }flowAfterRack6Chassis2_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+          type swakExpression;
+          valueType faceZone;
+          zoneName Rack6Chassis2_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0_2;
+          expression "phi*flip()";
+          accumulations (
+              sum
+          );
+          verbose true;
+      }flowAfterRack6Chassis4_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+          type swakExpression;
+          valueType faceZone;
+          zoneName Rack6Chassis4_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0_2;
+          expression "phi*flip()";
+          accumulations (
+              sum
+          );
+          verbose true;
+      }flowAfterRack6Chassis6_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+          type swakExpression;
+          valueType faceZone;
+          zoneName Rack6Chassis6_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0_2;
+          expression "phi*flip()";
+          accumulations (
+              sum
+          );
+          verbose true;
+      }flowAfterRack7Chassis2_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+          type swakExpression;
+          valueType faceZone;
+          zoneName Rack7Chassis2_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0_2;
+          expression "phi*flip()";
+          accumulations (
+              sum
+          );
+          verbose true;
+      }flowAfterRack7Chassis4_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+          type swakExpression;
+          valueType faceZone;
+          zoneName Rack7Chassis4_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0_2;
+          expression "phi*flip()";
+          accumulations (
+              sum
+          );
+          verbose true;
+      }flowAfterRack7Chassis6_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+          type swakExpression;
+          valueType faceZone;
+          zoneName Rack7Chassis6_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0_2;
+          expression "phi*flip()";
+          accumulations (
+              sum
+          );
+          verbose true;
+      }flowAfterRack8Chassis2_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+          type swakExpression;
+          valueType faceZone;
+          zoneName Rack8Chassis2_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0_2;
+          expression "phi*flip()";
+          accumulations (
+              sum
+          );
+          verbose true;
+      }flowAfterRack8Chassis4_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+          type swakExpression;
+          valueType faceZone;
+          zoneName Rack8Chassis4_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0_2;
+          expression "phi*flip()";
+          accumulations (
+              sum
+          );
+          verbose true;
+      }flowAfterRack8Chassis6_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0
+      {
+          type swakExpression;
+          valueType faceZone;
+          zoneName Rack8Chassis6_100_-y_0.245_1000.0_0.0_0.0_1.0_0.5_3500.0_2;
+          expression "phi*flip()";
+          accumulations (
+              sum
+          );
+          verbose true;
+      }flowAfterInlet0_0_0_3.5_0.0_0.0_0.0
+      {
+          type swakExpression;
+          valueType faceZone;
+          zoneName Inlet0_0_0_3.5_0.0_0.0_0.0;
+          expression "phi*flip()";
+          accumulations (
+              sum
+          );
+          verbose true;
+      }}libs (
+    "libmeshToos.so"
+    "libOpenFOAM.so"
+    "libgroovyBC.so"
+    "libsimpleSwakFunctionObjects.so"
+    "libswakFunctionObjects.so"
+    "libswakTopoSources.so"
+) ;
