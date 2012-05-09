@@ -1,41 +1,48 @@
+#!/usr/bin/env ruby
+
+#
 #  Main Options
+#
 Q = 733159.3302
 firstEndTime = 21
-secondEndTime = 22
+secondEndTime = 110
 mainDirectory = Dir.pwd
 openFoamRootDirectory = "/home/bluesim/OpenFOAM/OpenFOAM-1.6.x/"
-
 ChassisList = ["//rack1chassis2","//rack1chassis4","//rack1chassis6",'//rack2chassis2','//rack2chassis4','//rack2chassis6','//rack3chassis2','//rack3chassis4',
 '//rack3chassis6','//rack4chassis2','//rack4chassis4','//rack4chassis6','//rack5chassis2','//rack5chassis4','//rack5chassis6','//rack6chassis2','//rack6chassis4',
 '//rack6chassis6','//rack7chassis2','//rack7chassis4','//rack7chassis6','//rack8chassis2','//rack8chassis4','//rack8chassis6']
 
-Dir.chdir(mainDirectory)
-timeFile = File.open('timeStamps', 'w')
 
-system("rm -r rack* ")
-#Main Simulation Loop
+#
+# Make a unique directory to store our results. Directory and experiment 
+#   name are based on command line argument
+#
+if(ARGV[0].nil?)
+	abort("Pass name of experiment as command line argument.")
+end
+experimentName = ARGV[0]
+currentTime = Time.new
+rootResultsDirectory = "Results_ExperimentName-#{experimentName}_DateTime-" + 
+	"#{currentTime.month}.#{currentTime.day}.#{currentTime.year}_" +
+	"#{currentTime.hour}:#{currentTime.min}"
+system("mkdir #{rootResultsDirectory}")
+system("mkdir #{rootResultsDirectory}/MainData")
+
+
+#
+# Main Simulation Loop
+#  Loops over our list of chassis, defined at top of file
 ChassisList.each{ |chassis|
-timeFile.puts chassis.to_s + " start :-: " + Time.now.getutc.to_s
-
 Dir.chdir(mainDirectory)
+
 	#
 	# Clearing Previous Results
 	#
-	for i in (201)...(secondEndTime*10 +1)
-	  modifiedString = i.to_s
-	  if(i%10 == 0)
-		  modifiedString = modifiedString.chomp("0")
-	  else
-		  modifiedString.insert((modifiedString.size-1), ".")
-	  end
-	  system("rm -r #{modifiedString} ")
-	end
-	system("rm -r Rack* ")
-	system("rm -r swak* ")
-	system("rm -r probes2 ")
+	system("ruby clean.rb #{secondEndTime}")
+
 
 	#
-	#	Section to handle changing transientSimpleFoam.C file.
+	#	Suppress temperature control in transientSimpleFoam.C (within the solver)
 	#
 	Dir.chdir(openFoamRootDirectory + 'applications/solvers/incompressible/transientSimpleFoam')
 	origTransientSimpleFoamC = File.readlines('transientSimpleFoam.C.original')
@@ -49,11 +56,20 @@ Dir.chdir(mainDirectory)
 	end
 	}  
 	setTransientSimpleFoamC.close
+	
+	
+	#
+	#   Recompile our solver
+	#
 	system("wmake libso ")
 	Dir.chdir(openFoamRootDirectory + 'applications')
 	system("./Allwmake ")
 
 
+
+	#
+	#   Set the Q value (temperature?) high for these time steps
+	#
 	Dir.chdir(mainDirectory+'/system')
 	origSetFieldsDictFile = File.readlines('setFieldsDict.original')
 	setFieldsDictFile = File.open('setFieldsDict', 'w')
@@ -68,8 +84,9 @@ Dir.chdir(mainDirectory)
 	setFieldsDictFile.close
 
 
-
-
+	#
+	#   Setting our endTime to be the first endTime
+	#
 	origControlDict = File.readlines('controlDict.original')
 	setControlDict = File.open('controlDict', 'w')
 	passedFirst = false
@@ -89,26 +106,17 @@ Dir.chdir(mainDirectory)
 	}
 	setControlDict.close
 
+	#
+	# Get back to our root simulation directory, setFields and run the simulation
+	#
 	Dir.chdir(mainDirectory)
-
-	#puts "Check files *********************"
-	#puts "transientSimpleFoam.C should have #{chassis.to_s} commented out,"
-	#puts "setFieldsDict should have #{chassis.to_s}'s Q set high, and"
-	#puts "controlDict should have endTime set to #{firstEndTime.to_s}"
-	#nothingHere = gets
-
 	system("setFields -latestTime ")
 	system("transientSimpleFoam ")
 
-	#
-	#
-	#  1        tt     TTTTTTT iii                      SSSSS  iii              DDDDD                        
-	# 111  sss  tt       TTT       mm mm mmmm    eee   SS          mm mm mmmm   DD  DD   oooo  nn nnn    eee 
-	#  11 s     tttt     TTT   iii mmm  mm  mm ee   e   SSSSS  iii mmm  mm  mm  DD   DD oo  oo nnn  nn ee   e
-	#  11  sss  tt       TTT   iii mmm  mm  mm eeeee        SS iii mmm  mm  mm  DD   DD oo  oo nn   nn eeeee 
-	# 111     s  tttt    TTT   iii mmm  mm  mm  eeeee   SSSSS  iii mmm  mm  mm  DDDDDD   oooo  nn   nn  eeeee
-	#       sss                                                                                               
-
+	############################################################################################
+	#### First End Time Reached - Beginning Second End Time Simulation
+	############################################################################################
+	
 	#
 	#	Section to handle changing transientSimpleFoam.C file.
 	#
@@ -165,10 +173,18 @@ Dir.chdir(mainDirectory)
 	setControlDict.close
 
 
+	#
+	# Run final time series of simulation with final endTime
+	#
 	Dir.chdir(mainDirectory)
 	system("setFields -latestTime ")
 	system("transientSimpleFoam ")
 
+
+	############################################################################################
+	#### Simulation Over - Moving Simulation Results into Results Folder
+	############################################################################################
+		
 	#Sim done - moving results files into results folder
 	directoryFolder = chassis
 	directoryFolder.slice!(0)
@@ -221,7 +237,8 @@ Dir.chdir(mainDirectory)
 	mainResultsFile.puts resultsLineAsString
 	}
 	mainResultsFile.close
+	system("cp #{mainDirectory}/#{directoryFolder}/#{resultsFileName} #{mainDirectory}/#{rootResultsDirectory}/MainData/")
+	system("mv #{mainDirectory}/#{directoryFolder} #{mainDirectory}/#{rootResultsDirectory}/")
 	system("rm -rf ~/.local/share/Trash/* ")
-	timeFile.puts chassis.to_s + " end :-: " + Time.now.getutc.to_s
-	timeFile.puts
 } 
+system("zip -r #{rootResultsDirectory}.zip #{rootResultsDirectory}")
