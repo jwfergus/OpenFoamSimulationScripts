@@ -22,7 +22,7 @@ system/*
 
 !*.rb
 test.rb
-
+!*.sh
 #
 #   Finally, can't ignore our .gitignore
 #
