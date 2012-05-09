@@ -3,12 +3,13 @@
 #
 #  Main Options
 #
-Q = 733159.3302
+Q = 1466318.6604
+CRAC_Q = 111111.1111
 firstEndTime = 21
-secondEndTime = 110
+secondEndTime = 22
 mainDirectory = Dir.pwd
 openFoamRootDirectory = "/home/bluesim/OpenFOAM/OpenFOAM-1.6.x/"
-ChassisList = ["//rack1chassis2","//rack1chassis4","//rack1chassis6",'//rack2chassis2','//rack2chassis4','//rack2chassis6','//rack3chassis2','//rack3chassis4',
+ChassisList = ['//____CRAC_____', "//rack1chassis2","//rack1chassis4","//rack1chassis6",'//rack2chassis2','//rack2chassis4','//rack2chassis6','//rack3chassis2','//rack3chassis4',
 '//rack3chassis6','//rack4chassis2','//rack4chassis4','//rack4chassis6','//rack5chassis2','//rack5chassis4','//rack5chassis6','//rack6chassis2','//rack6chassis4',
 '//rack6chassis6','//rack7chassis2','//rack7chassis4','//rack7chassis6','//rack8chassis2','//rack8chassis4','//rack8chassis6']
 
@@ -24,7 +25,7 @@ experimentName = ARGV[0]
 currentTime = Time.new
 rootResultsDirectory = "Results_ExperimentName-#{experimentName}_DateTime-" + 
 	"#{currentTime.month}.#{currentTime.day}.#{currentTime.year}_" +
-	"#{currentTime.hour}:#{currentTime.min}"
+	"#{currentTime.hour}.#{currentTime.min}"
 system("mkdir #{rootResultsDirectory}")
 system("mkdir #{rootResultsDirectory}/MainData")
 
@@ -75,8 +76,13 @@ Dir.chdir(mainDirectory)
 	setFieldsDictFile = File.open('setFieldsDict', 'w')
 	origSetFieldsDictFile.each{|line|
 	if line.include?( chassis.to_s)
-	  setFieldsDictFile.puts "\t\tvolScalarFieldValue Q "+Q.to_s+" "+chassis.to_s
-	  puts
+		if(chassis.to_s == '//____CRAC_____')
+	  		setFieldsDictFile.puts "\t\tvolScalarFieldValue Q "+CRAC_Q.to_s+" "+chassis.to_s
+	 		puts
+		else
+	  		setFieldsDictFile.puts "\t\tvolScalarFieldValue Q "+Q.to_s+" "+chassis.to_s
+	 		puts
+		end
 	else
 	  setFieldsDictFile.puts(line)
 	end
@@ -241,4 +247,6 @@ Dir.chdir(mainDirectory)
 	system("mv #{mainDirectory}/#{directoryFolder} #{mainDirectory}/#{rootResultsDirectory}/")
 	system("rm -rf ~/.local/share/Trash/* ")
 } 
+Dir.chdir("#{mainDirectory}")
 system("zip -r #{rootResultsDirectory}.zip #{rootResultsDirectory}")
+system("./MoveResultsToServer.sh #{rootResultsDirectory}.zip")
